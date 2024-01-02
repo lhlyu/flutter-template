@@ -1,5 +1,4 @@
-
-name: Test, Build and Release apk
+name: Flutter
 
 on:
   push:
@@ -7,7 +6,7 @@ on:
       - master
 
 jobs:
-  process:
+  flutter:
     name: all process
     runs-on: ubuntu-latest
     steps:
@@ -54,3 +53,14 @@ jobs:
           allowUpdates: true
           generateReleaseNotes: true
           token: ${{ secrets.TOKEN }}
+
+      - name: 打包Web
+        run: flutter build web --release
+
+      - name: 部署到Github Page
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{ secrets.TOKEN }}
+          branch: gh-pages
+          folder: build/web
+          clean: true
