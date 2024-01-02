@@ -45,7 +45,7 @@ jobs:
         run: brew install create-dmg
 
       - name: 将app制作成dmg
-        run: create-dmg "build/macos/Build/Products/Release/${{ github.event.repository.name }}.app" "./app.dmg"
+        run: create-dmg "./app.dmg" "build/macos/Build/Products/Release/${{ github.event.repository.name }}.app"
 
       - name: 获取版本号
         run: |
