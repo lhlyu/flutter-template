@@ -55,7 +55,7 @@ jobs:
           token: ${{ secrets.TOKEN }}
 
       - name: 打包Web
-        run: flutter build web --release
+        run: flutter build web --release --base-href "/${{ github.event.repository.name }}/"
 
       - name: 部署到Github Page
         uses: JamesIves/github-pages-deploy-action@v4
