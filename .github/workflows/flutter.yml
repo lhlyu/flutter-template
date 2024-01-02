@@ -41,6 +41,12 @@ jobs:
       - name: 打包Macos
         run: flutter build macos
 
+      - name: 安装create-dmg工具
+        run: brew install create-dmg
+
+      - name: 将app制作成dmg
+        run: create-dmg "build/macos/Build/Products/Release/${{ github.event.repository.name }}.app" "./app.dmg"
+
       - name: 获取版本号
         run: |
           echo "version=$(awk -F': ' '/version:/ {gsub("\\+", "-", $2); print $2}' pubspec.yaml)" >> "$GITHUB_ENV"
@@ -54,7 +60,7 @@ jobs:
         with:
           tag: "v${{ env.version }}"
           draft: false
-          artifacts: "build/app/outputs/flutter-apk/*, build/macos/Build/Products/Release/flutter_template.app"
+          artifacts: "build/app/outputs/flutter-apk/*, app.dmg"
           allowUpdates: true
           generateReleaseNotes: true
           token: ${{ secrets.TOKEN }}
