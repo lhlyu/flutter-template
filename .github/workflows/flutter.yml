@@ -6,9 +6,11 @@ on:
       - master
 
 jobs:
-  flutter:
-    name: all process
-    runs-on: ubuntu-latest
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest]
     steps:
       - name: 检出代码
         uses: actions/checkout@v4
