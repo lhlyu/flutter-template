@@ -29,12 +29,15 @@ jobs:
 
 
       - name: 打包安卓
-        run: flutter build apk --release
+        run: flutter build apk
         env:
           KEYSTORE_KEY_ALIAS: ${{ secrets.KEYSTORE_KEY_ALIAS }}
           KEYSTORE_KEY_PASSWORD: ${{ secrets.KEYSTORE_KEY_PASSWORD }}
           KEYSTORE_FILE: ${{ secrets.KEYSTORE_FILE }}
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+
+      - name: 打包Macos
+        run: flutter build macos
 
       - name: 获取版本号
         run: |
@@ -49,7 +52,7 @@ jobs:
         with:
           tag: "v${{ env.version }}"
           draft: false
-          artifacts: "build/app/outputs/flutter-apk/*"
+          artifacts: "build/app/outputs/flutter-apk/*, build/macos/Build/Products/Release/flutter_template.app"
           allowUpdates: true
           generateReleaseNotes: true
           token: ${{ secrets.TOKEN }}

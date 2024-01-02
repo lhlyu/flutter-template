@@ -6,7 +6,8 @@
 
 ## 功能
 
-- [ ]Github Actions自动化
+- [ ] Github Actions自动化
+- [ ] 自动更新
 
 
 ## 资料
