@@ -14,7 +14,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 1;
-  final PageController _pageController = PageController();
+
+  final PageController _pageController = PageController(
+    initialPage: 1,
+    keepPage: true
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +45,8 @@ class _HomePageState extends State<HomePage> {
             curve: Curves.easeInOut,
           );
         },
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
         elevation: 0,
         backgroundColor: Colors.white,
         unselectedItemColor: Colors.grey,

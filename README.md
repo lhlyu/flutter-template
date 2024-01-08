@@ -42,3 +42,4 @@ https://github.com/flutter/packages/blob/main/packages/go_router/example/lib/she
 - [flutter教程](https://codewithandrea.com/tutorials/)
 - [让 Flutter 应用从枯燥乏味变得生动美观](https://codelabs.developers.google.com/codelabs/flutter-boring-to-beautiful?hl=zh-cn#6)
 - [组件](https://fluttergems.dev/)
+- [material主题生成](https://m3.material.io/theme-builder)
