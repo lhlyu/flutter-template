@@ -34,7 +34,7 @@
 
 https://github.com/flutter/packages/blob/main/packages/go_router/example/lib/shell_route.dart#L118
 
-## 资料
+## 参考
 
 - [Dart教程](https://dart.cn/guides)
 - [测试如何写](https://juejin.cn/post/7318704408728158246)
@@ -43,3 +43,5 @@ https://github.com/flutter/packages/blob/main/packages/go_router/example/lib/she
 - [让 Flutter 应用从枯燥乏味变得生动美观](https://codelabs.developers.google.com/codelabs/flutter-boring-to-beautiful?hl=zh-cn#6)
 - [组件](https://fluttergems.dev/)
 - [material主题生成](https://m3.material.io/theme-builder)
+- [猫哥的文章](https://wiki.ducafecat.tech/)
+- [配色](https://docs.flexcolorscheme.com/)

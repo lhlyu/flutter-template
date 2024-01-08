@@ -24,6 +24,12 @@ class MyApp extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
         ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Colors.white,
+          elevation: 0,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+        ),
       ),
       darkTheme: ThemeData(useMaterial3: true),
     );

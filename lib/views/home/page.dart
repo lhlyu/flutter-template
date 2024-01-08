@@ -45,14 +45,6 @@ class _HomePageState extends State<HomePage> {
             curve: Curves.easeInOut,
           );
         },
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        elevation: 0,
-        backgroundColor: Colors.white,
-        unselectedItemColor: Colors.grey,
-        // selectedIconTheme: IconThemeData(
-        //   size: ((IconTheme.of(context).size)! * 1.3),
-        // ),
         type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.tune), label: "许可"),
