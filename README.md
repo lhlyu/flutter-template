@@ -4,6 +4,11 @@
 
 - [链接](./docs)
 
+## 开发
+
+1. `flutter pub get`
+2. `dart run build_runner build`
+
 ## 功能
 
 - [ ] Github Actions自动化
@@ -18,19 +23,13 @@
   - upgrade
   - about
 
-## 依赖
-
-- upgrader: 支持多个平台
-- go_router: 不依赖context
-- mobx: 状态管理
-
-
 
 ## 命令
 
-- `flutter pub run build_runner build`
+- riverpod code-generator
 
-生成mobx的`g.dart`文件
+`dart run build_runner watch`
+`dart run build_runner build`
 
 https://github.com/flutter/packages/blob/main/packages/go_router/example/lib/shell_route.dart#L118
 
@@ -45,3 +44,8 @@ https://github.com/flutter/packages/blob/main/packages/go_router/example/lib/she
 - [material主题生成](https://m3.material.io/theme-builder)
 - [猫哥的文章](https://wiki.ducafecat.tech/)
 - [配色](https://docs.flexcolorscheme.com/)
+- [Hive使用教程](https://juejin.cn/post/7062646032550592549)
+- [riverpod教程](https://riverpod.dev/zh-Hans/docs)
+- [freezed教程](https://github.com/rrousselGit/freezed/blob/master/resources/translations/zh_CN/README.md)
+- [JsonToFreezed工具](https://dartj.web.app)
+- [老孟Flutter](https://github.com/LaoMengFlutter)
