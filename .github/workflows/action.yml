@@ -23,28 +23,23 @@ jobs:
         include:
           - type: web
             os: macos-latest
-            build-path: build
-            build-output: web
+            output-path: build/web
 
           - type: macos
             os: macos-latest
-            build-path: build/macos/Build/Products/Release
-            build-output: ${{ github.event.repository.name }}.app
+            output-path: build/macos/Build/Products/Release/${{ github.event.repository.name }}.app
 
           - type: windows
             os: windows-latest
-            build-path: build\windows\x64\runner
-            build-output: Release
+            output-path: build\windows\x64\runner\Release
 
           - type: linux
             os: ubuntu-latest
-            build-path: build/linux/x64/release
-            build-output: bundle
+            output-path: build/linux/x64/release/bundle
 
           - type: android
             os: macos-latest
-            build-path: build/app/outputs
-            build-output: flutter-apk
+            output-path: build/app/outputs/flutter-apk
 
     steps:
       - name: 代码检出
@@ -111,7 +106,7 @@ jobs:
 
       - name: 打包Windows
         if: ${{ matrix.type == 'windows' }}
-        run: flutter build window
+        run: flutter build windows
 
       - name: 打包Linux
         if: ${{ matrix.type == 'linux' }}
@@ -129,7 +124,7 @@ jobs:
       - name: 产物压缩
         uses: montudor/action-zip@v1
         with:
-          args: zip -qq -r ${{ matrix.type }}.zip ${{ matrix.build-path }}/${{ matrix.build-output }}
+          args: zip -qq -r ${{ matrix.type }}.zip ${{ matrix.output-path }}
 
       - name: Release
         uses: ncipollo/release-action@v1
