@@ -19,8 +19,7 @@ jobs:
 
     strategy:
       matrix:
-        type: [ web, windows ]
-#        type: [ web, macos, windows, linux, android ]
+        type: [ web, macos, windows, linux, android ]
         include:
           - type: web
             os: macos-latest
@@ -125,8 +124,8 @@ jobs:
           flutter build macos
           ls -l ./build/macos/Build/Products/Release
 
-      - name: 打包Window
-        if: ${{ matrix.type == 'window' }}
+      - name: 打包Windows
+        if: ${{ matrix.type == 'windows' }}
         run: |
           flutter build window
           tree .\build\windows\x64\runner\Release /F
