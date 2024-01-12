@@ -19,7 +19,7 @@ jobs:
 
     strategy:
       matrix:
-        type: [ web ]
+        type: [ web, windows ]
 #        type: [ web, macos, windows, linux, android ]
         include:
           - type: web
@@ -70,6 +70,16 @@ jobs:
         with:
           channel: "stable"
 
+      - name: 缓存依赖
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.pub-cache
+            .dart_tool
+          key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-flutter-
+
       - name: 下载依赖
         run: flutter pub get
 
@@ -96,7 +106,7 @@ jobs:
       - name: 打包WEB
         if: ${{ matrix.type == 'web' }}
         run: |
-          flutter build web --release --base-href "/${{ github.event.repository.name }}/"'
+          flutter build web --release --base-href "/${{ github.event.repository.name }}/"
           ls -l ./build/web
 
 
