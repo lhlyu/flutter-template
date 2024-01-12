@@ -3,7 +3,7 @@ name: Flutter 自动化打包
 on:
   push:
     branches:
-      - main
+      - master
   # 当有新的 Pull Request 时
   pull_request:
   # 允许手动触发
