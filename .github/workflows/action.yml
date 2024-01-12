@@ -69,16 +69,6 @@ jobs:
         with:
           channel: "stable"
 
-      - name: 缓存依赖
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.pub-cache
-            .dart_tool
-          key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-flutter-
-
       - name: 下载依赖
         run: flutter pub get
 
@@ -146,6 +136,13 @@ jobs:
           KEYSTORE_KEY_PASSWORD: ${{ secrets.KEYSTORE_KEY_PASSWORD }}
           KEYSTORE_FILE: ${{ secrets.KEYSTORE_FILE }}
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+
+#      - name: Upload artifacts ⬆️
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: artifact-${{ matrix.type }}
+#          path: "**/${{ matrix.type }}.tar.gz"
+#          if-no-files-found: error
 
 #      - name: Release
 #        uses: ncipollo/release-action@v1
