@@ -4,10 +4,6 @@ on:
   push:
     branches:
       - master
-  # 当有新的 Pull Request 时
-  pull_request:
-  # 允许手动触发
-  workflow_dispatch:
 
 # 并发策略
 concurrency:
@@ -26,7 +22,7 @@ jobs:
         type: [ web, macos, windows, linux, android ]
         include:
           - type: web
-            os: ubuntu-latest
+            os: macos-latest
             build-path: build
             build-output: web
 
@@ -46,7 +42,7 @@ jobs:
             build-output: bundle
 
           - type: android
-            os: ubuntu-latest
+            os: macos-latest
             build-path: build/app/outputs
             build-output: flutter-apk
 
