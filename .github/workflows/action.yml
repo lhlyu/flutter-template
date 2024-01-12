@@ -76,8 +76,17 @@ jobs:
         run: dart run build_runner build
 
       - name: 获取版本号
+        if: ${{ matrix.type != 'windows' }}
         run: |
           echo "version=$(awk -F': ' '/version:/ {gsub("\\+", "-", $2); print $2}' pubspec.yaml)" >> "$GITHUB_ENV"
+
+      - name: Window获取版本号
+        if: ${{ matrix.type == 'windows' }}
+        shell: pwsh
+        run: |
+          $version = (Get-Content pubspec.yaml -Raw) -match 'version:\s*([^\s]+)' | Out-Null
+          $version = $Matches[1] -replace '\+', '-'
+          echo "version=$version" | Out-File -Append -Encoding utf8 -FilePath $Env:GITHUB_ENV
 
       - name: 打印版本号
         run: |
