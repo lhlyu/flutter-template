@@ -94,10 +94,7 @@ jobs:
 
       - name: 打包WEB
         if: ${{ matrix.type == 'web' }}
-        run: |
-          flutter build web --release --base-href "/${{ github.event.repository.name }}/"
-          ls -l ./build/web
-
+        run: flutter build web --release --base-href "/${{ github.event.repository.name }}/"
 
       - name: 将web部署到Github Page
         uses: JamesIves/github-pages-deploy-action@v4
@@ -110,49 +107,39 @@ jobs:
 
       - name: 打包Macos
         if: ${{ matrix.type == 'macos' }}
-        run: |
-          flutter build macos
-          ls -l ./build/macos/Build/Products/Release
+        run: flutter build macos
 
       - name: 打包Windows
         if: ${{ matrix.type == 'windows' }}
-        run: |
-          flutter build window
-          tree .\build\windows\x64\runner\Release /F
+        run: flutter build window
 
       - name: 打包Linux
         if: ${{ matrix.type == 'linux' }}
-        run: |
-          flutter build linux
-          ls -l ./build/linux/x64/release/bundle
+        run: flutter build linux
 
       - name: 打包安卓
         if: ${{ matrix.type == 'android' }}
-        run: |
-          flutter build apk
-          ls -l ./build/app/outputs/flutter-apk
+        run: flutter build apk
         env:
           KEYSTORE_KEY_ALIAS: ${{ secrets.KEYSTORE_KEY_ALIAS }}
           KEYSTORE_KEY_PASSWORD: ${{ secrets.KEYSTORE_KEY_PASSWORD }}
           KEYSTORE_FILE: ${{ secrets.KEYSTORE_FILE }}
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
 
-#      - name: Upload artifacts ⬆️
-#        uses: actions/upload-artifact@v4
-#        with:
-#          name: artifact-${{ matrix.type }}
-#          path: "**/${{ matrix.type }}.tar.gz"
-#          if-no-files-found: error
+      - name: 产物压缩
+        uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r ${{ matrix.type }}.zip ${{ matrix.build-path }}/${{ matrix.build-output }}
 
-#      - name: Release
-#        uses: ncipollo/release-action@v1
-#        with:
-#          tag: "v${{ env.version }}"
-#          draft: false
-#          artifacts: "build/app/outputs/flutter-apk/*, app.dmg"
-#          allowUpdates: true
-#          generateReleaseNotes: true
-#          token: ${{ secrets.TOKEN }}
+      - name: Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: "v${{ env.version }}"
+          draft: false
+          artifacts: "*.zip"
+          allowUpdates: true
+          generateReleaseNotes: true
+          token: ${{ secrets.TOKEN }}
 
 
 
