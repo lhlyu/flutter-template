@@ -75,7 +75,7 @@ jobs:
         run: |
           echo "version=$(awk -F': ' '/version:/ {gsub("\\+", "-", $2); print $2}' pubspec.yaml)" >> "$GITHUB_ENV"
 
-      - name: Window获取版本号
+      - name: 获取版本号(windows)
         if: ${{ matrix.type == 'windows' }}
         shell: pwsh
         run: |
@@ -121,28 +121,23 @@ jobs:
           KEYSTORE_FILE: ${{ secrets.KEYSTORE_FILE }}
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
 
-      # 这里主要是借助这工具进行压缩
-      - name: 上传产物
-        uses: actions/upload-artifact@v4
-        with:
-          name: artifact-${{ matrix.type }}
-          path: ${{ matrix.output-path }}
-          if-no-files-found: error
 
-      - name: 下载产物
-        uses: actions/download-artifact@v4
-        with:
-          name: artifact-${{ matrix.type }}
+      - name: 压缩产物
+        if: ${{ matrix.type != 'windows' }}
+        run: tar -czvf ${{ github.event.repository.name }}-${{ matrix.type }}.tar.gz ${{ matrix.output-path }}
 
-      - name: 打印当前目录结构
-        run: ls -l
+      - name: 压缩产物(windows)
+        if: ${{ matrix.type == 'windows' }}
+        shell: pwsh
+        run: |
+          Compress-Archive -Path '${{ matrix.output-path }}' -DestinationPath '${{ github.event.repository.name }}-${{ matrix.type }}.zip'
 
       - name: Release
         uses: ncipollo/release-action@v1
         with:
           tag: "v${{ env.version }}"
           draft: false
-          artifacts: "*.tar.gz"
+          artifacts: "*.tar.gz,*.zip"
           allowUpdates: true
           generateReleaseNotes: true
           token: ${{ secrets.TOKEN }}
