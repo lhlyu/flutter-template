@@ -11,7 +11,7 @@
 
 ## 功能
 
-- [ ] Github Actions自动化
+- [x] Github Actions自动化
 - [ ] 主题切换
 - [ ] 自动更新
 - [ ] 状态管理
