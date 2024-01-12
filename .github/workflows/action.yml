@@ -121,17 +121,28 @@ jobs:
           KEYSTORE_FILE: ${{ secrets.KEYSTORE_FILE }}
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
 
-      - name: 产物压缩
-        uses: montudor/action-zip@v1
+      # 这里主要是借助这工具进行压缩
+      - name: 上传产物
+        uses: actions/upload-artifact@v4
         with:
-          args: zip -qq -r ${{ matrix.type }}.zip ${{ matrix.output-path }}
+          name: artifact-${{ matrix.type }}
+          path: ${{ matrix.output-path }}
+          if-no-files-found: error
+
+      - name: 下载产物
+        uses: actions/download-artifact@v4
+        with:
+          name: artifact-${{ matrix.type }}
+
+      - name: 打印当前目录结构
+        run: ls -l
 
       - name: Release
         uses: ncipollo/release-action@v1
         with:
           tag: "v${{ env.version }}"
           draft: false
-          artifacts: "*.zip"
+          artifacts: "*.tar.gz"
           allowUpdates: true
           generateReleaseNotes: true
           token: ${{ secrets.TOKEN }}
