@@ -12,7 +12,11 @@
 ## 功能
 
 - [ ] Github Actions自动化
+- [ ] 主题切换
 - [ ] 自动更新
+- [ ] 状态管理
+- [ ] 远程请求
+- [ ] 
 
 ## 页面
 
@@ -49,3 +53,4 @@ https://github.com/flutter/packages/blob/main/packages/go_router/example/lib/she
 - [freezed教程](https://github.com/rrousselGit/freezed/blob/master/resources/translations/zh_CN/README.md)
 - [JsonToFreezed工具](https://dartj.web.app)
 - [老孟Flutter](https://github.com/LaoMengFlutter)
+- [Flutter Material3主题编辑器](https://github.com/zeshuaro/appainter)
