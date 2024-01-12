@@ -23,23 +23,28 @@ jobs:
         include:
           - type: web
             os: macos-latest
-            output-path: build/web
+            path: build
+            output: web
 
           - type: macos
             os: macos-latest
-            output-path: build/macos/Build/Products/Release/${{ github.event.repository.name }}.app
+            path: build/macos/Build/Products/Release
+            output: ${{ github.event.repository.name }}.app
 
           - type: windows
             os: windows-latest
-            output-path: build\windows\x64\runner\Release
+            path: build\windows\x64\runner
+            output: Release
 
           - type: linux
             os: ubuntu-latest
-            output-path: build/linux/x64/release/bundle
+            path: build/linux/x64/release
+            output: bundle
 
           - type: android
             os: macos-latest
-            output-path: build/app/outputs/flutter-apk
+            path: build/app/outputs
+            output: flutter-apk
 
     steps:
       - name: 代码检出
@@ -105,6 +110,7 @@ jobs:
 
       - name: 打包Windows
         if: ${{ matrix.type == 'windows' }}
+        shell: pwsh
         run: flutter build windows
 
       - name: 打包Linux
@@ -123,13 +129,14 @@ jobs:
 
       - name: 压缩产物
         if: ${{ matrix.type != 'windows' && matrix.type != 'android' }}
-        run: tar -czvf ${{ github.event.repository.name }}-${{ matrix.type }}.tar.gz ${{ matrix.output-path }}
+        run: |
+          tar -czvf ${{ github.event.repository.name }}-${{ matrix.type }}.tar.gz -C ${{ matrix.path }} ${{ matrix.output }}
 
       - name: 压缩产物(windows)
         if: ${{ matrix.type == 'windows' }}
         shell: pwsh
         run: |
-          Compress-Archive -Path '${{ matrix.output-path }}' -DestinationPath '${{ github.event.repository.name }}-${{ matrix.type }}.zip'
+          Compress-Archive -Path '${{ matrix.path }}\${{ matrix.output }}' -DestinationPath '${{ github.event.repository.name }}-${{ matrix.type }}.zip'
 
       - name: Release
         uses: ncipollo/release-action@v1
@@ -138,5 +145,4 @@ jobs:
           draft: false
           artifacts: "*.tar.gz,*.zip,build/app/outputs/flutter-apk/*.apk"
           allowUpdates: true
-          generateReleaseNotes: true
           token: ${{ secrets.TOKEN }}
