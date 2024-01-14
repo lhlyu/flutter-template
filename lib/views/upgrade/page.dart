@@ -14,9 +14,7 @@ class UpgradePage extends StatelessWidget {
         child: Center(
           child: Consumer(
             builder: (BuildContext context, WidgetRef ref, Widget? child) {
-
               final app = ref.watch(appProvider);
-
 
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -24,7 +22,8 @@ class UpgradePage extends StatelessWidget {
                     .map((v) => Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('${v.label}:${ref.read(appProvider.notifier).state.firstWhere((v) => v.name == 'theme').enable}'),
+                            Text(
+                                '${v.label}:${ref.read(appProvider.notifier).state.firstWhere((v) => v.name == 'theme').enable}'),
                             Switch(
                               value: v.enable,
                               onChanged: (bool newValue) {

@@ -1,4 +1,3 @@
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_provider.g.dart';
@@ -23,8 +22,8 @@ class Feature {
 class App extends _$App {
   @override
   List<Feature> build() => [
-    Feature(name: 'theme', label: '主题'),
-  ];
+        Feature(name: 'theme', label: '主题'),
+      ];
 
   void updateFeature(Feature updatedFeature) {
     final features = List<Feature>.from(state);

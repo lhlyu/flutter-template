@@ -1,5 +1,7 @@
 # flutter_template
 
+## 正在施工...
+
 ## 模板仓库的创建记录文档
 
 - [链接](./docs)
@@ -54,3 +56,4 @@ https://github.com/flutter/packages/blob/main/packages/go_router/example/lib/she
 - [JsonToFreezed工具](https://dartj.web.app)
 - [老孟Flutter](https://github.com/LaoMengFlutter)
 - [Flutter Material3主题编辑器](https://github.com/zeshuaro/appainter)
+- [Flutter修改应用名称及应用图标](https://juejin.cn/post/7220688635142455356)

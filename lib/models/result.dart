@@ -1,5 +1,6 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 part 'result.freezed.dart';
 part 'result.g.dart';
 
@@ -42,8 +43,7 @@ class Statistic with _$Statistic {
     required int views,
   }) = _Statistic;
 
-  factory Statistic.fromJson(Map<String, Object?> json) =>
-      _$StatisticFromJson(json);
+  factory Statistic.fromJson(Map<String, Object?> json) => _$StatisticFromJson(json);
 }
 
 @freezed

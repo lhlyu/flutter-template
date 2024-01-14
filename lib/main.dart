@@ -23,25 +23,26 @@ class MyApp extends ConsumerWidget {
 
     final app = ref.watch(appProvider);
 
-
     return MaterialApp.router(
       routerConfig: appRouter.router,
       theme: ThemeData(
         useMaterial3: true,
         scaffoldBackgroundColor: Colors.white,
+        splashColor: Colors.transparent,
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
         ),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: Colors.white,
           elevation: 0,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
         ),
       ),
       darkTheme: ThemeData(
         useMaterial3: true,
         scaffoldBackgroundColor: Colors.black,
+        splashColor: Colors.transparent,
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.black,
         ),

@@ -1,8 +1,5 @@
-import 'package:flutter_template/views/about/page.dart';
 import 'package:flutter_template/views/home/page.dart';
 import 'package:flutter_template/views/login/page.dart';
-import 'package:flutter_template/views/permission/page.dart';
-import 'package:flutter_template/views/upgrade/page.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
@@ -50,7 +47,6 @@ class AppRouter {
         ],
       );
 }
-
 
 class Route {
   String path;

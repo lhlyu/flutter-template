@@ -15,10 +15,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 1;
 
-  final PageController _pageController = PageController(
-    initialPage: 1,
-    keepPage: true
-  );
+  final PageController _pageController = PageController(initialPage: 1, keepPage: true);
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +44,10 @@ class _HomePageState extends State<HomePage> {
         },
         type: BottomNavigationBarType.fixed,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.tune), label: "许可"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.tune),
+            label: "许可",
+          ),
           BottomNavigationBarItem(icon: Icon(Icons.upgrade), label: "更新"),
           BottomNavigationBarItem(icon: Icon(Icons.info_outline), label: "关于"),
         ],
