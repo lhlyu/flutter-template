@@ -47,7 +47,7 @@ void main(List<String> args) async {
     print('flutter ${arguments.join(' ')}');
 
     // 执行 flutter create 命令
-    final process = await Process.start('flutter', arguments);
+    final process = await Process.start('flutter', arguments, runInShell: true);
 
     // 输出命令行结果
     process.stdout.transform(const SystemEncoding().decoder).listen((data) {

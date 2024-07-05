@@ -19,7 +19,7 @@ jobs:
 
     strategy:
       matrix:
-        type: [ android ]
+        type: [ android, windows, linux, macos, web ]
         include:
           - type: web
             os: macos-latest
