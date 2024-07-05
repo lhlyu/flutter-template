@@ -92,6 +92,12 @@ jobs:
         run: dart run build_runner build
 
       - name: 创建平台目录
+        if: ${{ matrix.type != 'windows' }}
+        run: dart scripts/init.dart production
+
+      - name: 创建平台目录(windows)
+        if: ${{ matrix.type == 'windows' }}
+        shell: pwsh
         run: dart scripts/init.dart production
 
       - name: 打包WEB

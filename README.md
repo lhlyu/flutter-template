@@ -17,6 +17,7 @@ git clone git@github.com:lhlyu/flutter_template.git [自定义名字]
 1. 生成秘钥
 
 - 本项目已经提供了生成秘钥的脚本，在 [genkey.sh](genkey.sh) ，打开文件，按照自己的要求进行修改
+- 保证系统安装了**keytool**工具
 - 执行脚本（windows建议使用Git Bash）`sh genkey.sh`
 - 生成后的信息放在 [.env.local](.env.local)
 
