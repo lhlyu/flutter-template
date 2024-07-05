@@ -1,59 +1,47 @@
 # flutter_template
 
-## 正在施工...
+A new Flutter project.
 
-## 模板仓库的创建记录文档
+## 如何将本项目改造成自己的项目
 
-- [链接](./docs)
+#### 1. 将项目克隆到本地
 
-## 开发
+```shell
+git clone git@github.com:lhlyu/flutter_template.git [自定义名字]
+```
 
-1. `flutter pub get`
-2. `dart run build_runner build`
+#### 2. 制作android的秘钥
 
-## 功能
+如果不开发android这一步直接跳过
 
-- [x] Github Actions自动化
-- [ ] 主题切换
-- [ ] 自动更新
-- [ ] 状态管理
-- [ ] 远程请求
-- [ ] 
+1. 生成秘钥
 
-## 页面
-
-- login
-- about
-- home
-  - permission
-  - upgrade
-  - about
+- 本项目已经提供了生成秘钥的脚本，在 [genkey.sh](genkey.sh) ，打开文件，按照自己的要求进行修改
+- 执行脚本（windows建议使用Git Bash）`sh genkey.sh`
+- 生成后的信息放在 [.env.local](.env.local)
 
 
-## 命令
+2. 配置环境变量
 
-- riverpod code-generator
+如果你怕这些变量暴露，可以自己找地方保存，我这里是开源项目，所以直接展示在 [.env.local](.env.local)
 
-`dart run build_runner watch`
-`dart run build_runner build`
+本地使用时，需要配置下面的环境变量
 
-https://github.com/flutter/packages/blob/main/packages/go_router/example/lib/shell_route.dart#L118
+github action打包需要在仓库 `Settings -> Secrets and variables -> Actions` 配置 `secrets`
 
-## 参考
+| 名字                    | 值            | 说明                           |
+|-----------------------|--------------|------------------------------|
+| KEYSTORE_BASE64       | `sdafdsf...` | 秘钥内容，base64格式                |
+| KEYSTORE_PASSWORD     | 123456       | 就是上面输入的秘钥口令                  |
+| KEYSTORE_KEY_ALIAS    | app          | 上面生成秘钥的别名                    |
+| KEYSTORE_KEY_PASSWORD | 123456       | 安卓要求跟 `KEYSTORE_PASSWORD` 一样 |
 
-- [Dart教程](https://dart.cn/guides)
-- [测试如何写](https://juejin.cn/post/7318704408728158246)
-- [导航](https://codewithandrea.com/articles/flutter-bottom-navigation-bar-nested-routes-gorouter/)
-- [flutter教程](https://codewithandrea.com/tutorials/)
-- [让 Flutter 应用从枯燥乏味变得生动美观](https://codelabs.developers.google.com/codelabs/flutter-boring-to-beautiful?hl=zh-cn#6)
-- [组件](https://fluttergems.dev/)
-- [material主题生成](https://m3.material.io/theme-builder)
-- [猫哥的文章](https://wiki.ducafecat.tech/)
-- [配色](https://docs.flexcolorscheme.com/)
-- [Hive使用教程](https://juejin.cn/post/7062646032550592549)
-- [riverpod教程](https://riverpod.dev/zh-Hans/docs)
-- [freezed教程](https://github.com/rrousselGit/freezed/blob/master/resources/translations/zh_CN/README.md)
-- [JsonToFreezed工具](https://dartj.web.app)
-- [老孟Flutter](https://github.com/LaoMengFlutter)
-- [Flutter Material3主题编辑器](https://github.com/zeshuaro/appainter)
-- [Flutter修改应用名称及应用图标](https://juejin.cn/post/7220688635142455356)
+#### 3. 初始化项目
+
+- 打开 [pubspec.yaml](pubspec.yaml) 文件，按照自己的要求修改项目的名字、描述、组织、需要构建的平台（支持ios,android,windows,linux,macos,web，如果是空字符串，则构建所有平台)
+
+- 执行脚本
+
+```shell
+dart scripts/init.dart
+```
