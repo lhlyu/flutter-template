@@ -78,12 +78,7 @@ jobs:
 
       - name: 打印版本号
         run: |-
-          if [ -n "${{ env.version }}" ]; then
-            echo "version: ${{ env.version }}"
-          else
-            echo "版本号不存在"
-            exit 1
-          fi
+          echo "version: ${{ env.version }}"
 
       - name: FlutterAction
         uses: subosito/flutter-action@v2
